@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 # Import blueprints routes here
+from hangman.hangman_routes import hangman_blueprint
 
 
 app = Flask(__name__)
@@ -30,6 +31,8 @@ def init_db():
 init_db()
 
 # Register routes here
+app.register_blueprint(hangman_blueprint, url_prefix="/hangman")
+
 
 # Home page
 @app.route('/', methods=['GET'])
