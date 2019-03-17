@@ -24,7 +24,6 @@ class Hangman(object):
         Some default vales to apply if not present.
         """
         if 'guesses' not in self.__dict__:
-            # score will be a multiple of this value * 2
             self.guesses = 5
 
         if 'hidden_word' not in self.__dict__:
@@ -34,6 +33,8 @@ class Hangman(object):
             self.display_word = self.get_display_word()
 
         self.game_won = False
+        # Number of guesses determines the score out of 100
+        self.score = (self.guesses * 2) * 10
 
     def __str__(self):
         rtn_list = ['Hangman object:\n']
@@ -63,14 +64,25 @@ class Hangman(object):
         """
         Check if the player has won the game.
         """
-        if self.guesses <= 0:
+        self.get_score()
+
+        if self.guesses < 0:
             print('You lose')
             self.game_won = False
         elif '_' not in self.display_word:
             print('You win')
             self.game_won = True
 
+    def get_score(self):
+        if self.guesses > 0:
+            self.score = (self.guesses * 2) * 10
+        else:
+            self.score = 0
+
     def check_current_guess(self, guess):
+        """
+        Checks a single character guess or an entire word guess.
+        """
         if self.game_won is False and self.guesses >= 0:
             self.guesses -= 1
             # Situation where guess is one char long.
@@ -96,5 +108,31 @@ if __name__ == "__main__":
     h = Hangman({
         'guesses': 5
     })
+
+    # pretend game
+    # move 1
+    print('1', h.check_current_guess('x'))
+    print(h.display_word)
+
+    # move 2
+    print('2', h.check_current_guess('h'))
+    print(h.display_word)
+
+    # move 3
+    print('3', h.check_current_guess('s'))
+    print(h.display_word)
+
+    # move 4
+    print('4', h.check_current_guess('3'))
+    print(h.display_word)
+
+    # move 5 game over
+    print('5', h.check_current_guess('b'))
+    print(h.display_word)
+
+    print(h.check_current_guess('a'))
+    print(h.display_word)
+
+    print(h.guesses)
 
     print(h)
