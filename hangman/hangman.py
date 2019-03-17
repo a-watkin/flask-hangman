@@ -51,12 +51,32 @@ class Hangman(object):
         """
         Check if the player has won the game.
         """
-        if self.guesses < 0:
+        if self.guesses <= 0:
             print('You lose')
             self.game_won = False
         elif '_' not in self.display_word:
             print('You win')
             self.game_won = True
+
+    def make_guess(self, guess):
+        if self.game_won is False and self.guesses >= 0:
+            self.guesses -= 1
+            # Situation where guess is one char long.
+            if len(guess) == 1:
+                # Get the index value of chars that match the guess.
+                index_values = [i for i, x in enumerate(
+                    self.guess_word) if x == guess]
+                # Set correct characters.
+                for i in index_values:
+                    self.display_word[i] = guess
+
+            # Situation where the guess is the lenght of the word.
+            if len(guess) == len(self.guess_word):
+                if ''.join(self.guess_word) == guess:
+                    self.display_word = ''.join(self.guess_word)
+
+            # Update game state.
+            self.check_state()
 
 
 if __name__ == "__main__":
@@ -69,3 +89,29 @@ if __name__ == "__main__":
     # faking a win
     # h.display_word = h.guess_word
     # print(h.check_state(), h.game_won)
+
+    # pretend game
+    # move 1
+    print(h.make_guess('x'))
+    print(h.display_word)
+
+    # move 2
+    print(h.make_guess('h'))
+    print(h.display_word)
+
+    # move 3
+    print(h.make_guess('s'))
+    print(h.display_word)
+
+    # move 4
+    print(h.make_guess('3'))
+    print(h.display_word)
+
+    # move 5
+    print(h.make_guess('b'))
+    print(h.display_word)
+
+    print(h.make_guess('a'))
+    print(h.display_word)
+
+    print(h.guesses)
