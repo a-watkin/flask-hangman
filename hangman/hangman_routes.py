@@ -11,7 +11,21 @@ def index():
     return render_template('hangman/index.html')
 
 
-@hangman_blueprint.route('/get/guess-word', methods=['GET'])
+@hangman_blueprint.route('/guess-word', methods=['GET'])
 def get_guess_word():
     h = Hangman()
+    return json.dumps(h.get_class_as_dict())
+
+
+@hangman_blueprint.route('/check-guess', methods=['POST'])
+def check_guess():
+    args = request.get_json()
+    h = Hangman(args)
+
+    # if guess in
+    if 'current_guess' in args:
+        guess = ''.join(args['current_guess'])
+        h.check_current_guess(guess)
+        print('yes')
+
     return json.dumps(h.get_class_as_dict())

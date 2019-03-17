@@ -1,0 +1,20 @@
+POST http://127.0.0.1:5000/hangman/check-guess
+content-type: application/json
+
+{
+  "words": [
+    "3dhubs"
+  ],
+  "guesses": 5,
+  "guess_word": "3dhubs",
+  "display_word": [
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+    "_"
+  ],
+  "game_won": false,
+  "current_guess": ["3d"]
+}

@@ -1,1 +1,1 @@
-GET http://127.0.0.1:5000/hangman/get/guess-word
+GET http://127.0.0.1:5000/hangman/guess-word

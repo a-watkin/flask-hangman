@@ -27,13 +27,22 @@ class Hangman(object):
             # score will be a multiple of this value * 2
             self.guesses = 5
 
-        if 'guess_word' not in self.__dict__:
-            self.guess_word = self.get_random_word()
+        if 'hidden_word' not in self.__dict__:
+            self.hidden_word = self.get_random_word()
 
         if 'display_word' not in self.__dict__:
             self.display_word = self.get_display_word()
 
         self.game_won = False
+
+    def __str__(self):
+        rtn_list = ['Hangman object:\n']
+        for attr in self.__dict__:
+            if attr is not 'db':
+                rtn_srt = str(attr) + ': ' + \
+                    str(self.__dict__[attr]) + '\n'
+                rtn_list.append(rtn_srt)
+        return ''.join(rtn_list)
 
     def get_class_as_dict(self):
         return self.__dict__
@@ -46,9 +55,9 @@ class Hangman(object):
 
     def get_display_word(self):
         """
-        Returns a list of spaces equal to the length of the current guess_word.
+        Returns a list of spaces equal to the length of the current hidden_word.
         """
-        return list(len(self.guess_word) * ('_'))
+        return list(len(self.hidden_word) * ('_'))
 
     def check_state(self):
         """
@@ -61,22 +70,22 @@ class Hangman(object):
             print('You win')
             self.game_won = True
 
-    def make_guess(self, guess):
+    def check_current_guess(self, guess):
         if self.game_won is False and self.guesses >= 0:
             self.guesses -= 1
             # Situation where guess is one char long.
             if len(guess) == 1:
                 # Get the index value of chars that match the guess.
                 index_values = [i for i, x in enumerate(
-                    self.guess_word) if x == guess]
+                    self.hidden_word) if x == guess]
                 # Set correct characters.
                 for i in index_values:
                     self.display_word[i] = guess
 
             # Situation where the guess is the lenght of the word.
-            if len(guess) == len(self.guess_word):
-                if ''.join(self.guess_word) == guess:
-                    self.display_word = ''.join(self.guess_word)
+            if len(guess) == len(self.hidden_word):
+                if ''.join(self.hidden_word) == guess:
+                    self.display_word = ''.join(self.hidden_word)
 
             # Update game state.
             self.check_state()
@@ -87,36 +96,5 @@ if __name__ == "__main__":
     h = Hangman({
         'guesses': 5
     })
-    print(h.display_word)
 
-    # faking a win
-    # h.display_word = h.guess_word
-    # print(h.check_state(), h.game_won)
-
-    # pretend game
-    # move 1
-    print(h.make_guess('x'))
-    print(h.display_word)
-
-    # move 2
-    print(h.make_guess('h'))
-    print(h.display_word)
-
-    # move 3
-    print(h.make_guess('s'))
-    print(h.display_word)
-
-    # move 4
-    print(h.make_guess('3'))
-    print(h.display_word)
-
-    # move 5
-    print(h.make_guess('b'))
-    print(h.display_word)
-
-    print(h.make_guess('a'))
-    print(h.display_word)
-
-    print(h.guesses)
-
-    print(h.get_dict())
+    print(h)
