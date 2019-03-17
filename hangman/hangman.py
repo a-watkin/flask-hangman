@@ -35,6 +35,9 @@ class Hangman(object):
 
         self.game_won = False
 
+    def get_class_as_dict(self):
+        return self.__dict__
+
     def get_random_word(self):
         """
         Returns a random word.
@@ -115,3 +118,5 @@ if __name__ == "__main__":
     print(h.display_word)
 
     print(h.guesses)
+
+    print(h.get_dict())
