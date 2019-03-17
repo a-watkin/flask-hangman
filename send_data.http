@@ -16,5 +16,5 @@ content-type: application/json
     "_"
   ],
   "game_won": false,
-  "current_guess": ["3d"]
+  "current_guess": ["d"]
 }

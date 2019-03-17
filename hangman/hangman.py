@@ -64,7 +64,6 @@ class Hangman(object):
         """
         Check if the player has won the game.
         """
-        self.get_score()
 
         if self.guesses < 0:
             print('You lose')
@@ -72,9 +71,19 @@ class Hangman(object):
         elif '_' not in self.display_word:
             print('You win')
             self.game_won = True
+            print(self.guesses, self.score, self.game_won)
+
+        self.get_score()
 
     def get_score(self):
-        if self.guesses > 0:
+        """
+        Updates the game score.
+        """
+        # I am counting a correct guess of the word from start as a score of 100.
+        if self.guesses == 4 and self.game_won is True:
+            self.score = 100
+        elif self.guesses > 0:
+            # Each guess out of 5 loses 20 points
             self.score = (self.guesses * 2) * 10
         else:
             self.score = 0
