@@ -1,3 +1,9 @@
 # Flask hangman
 
-This is very rough.
+Some of this is quite rough.
+
+If you want to run it locally you will have to intilise the database which you should be able to do with: create_db.py
+
+The http files are for testing the API.
+
+[A very ugly live version here](https://adevwatkin.com/hangman/)
