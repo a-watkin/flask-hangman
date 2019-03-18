@@ -7,38 +7,38 @@
     <h1>Hangman</h1>
   </div>
 </div>
+<hr />
 
 <div class="row">
-  <div class="col">
-    <h1 class="text-center" id="disaply-word"></h1>
-  </div>
-</div>
-
-<div class="row text-center">
-  <div class="col">
-    <table>
+  <div class="col text-center">
+    <table class="table">
       <thead>
         <div id="input-area"></div>
       </thead>
     </table>
   </div>
+</div>
 
-  <div class="col">
-    High scores
-    <hr />
-    {% for score in scores %}
-    <p>{{ score.username }}</p>
-    <p>{{ score.score }}</p>
-    <hr />
-    {% endfor %}
+<div class="row">
+  <div class="col text-center">
+    <button id="make-guess" class="btn btn-primary">
+      Make Guess
+    </button>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <button id="make-guess" class="btn btn-primary">
-      Make Guess
-    </button>
+    <div class="col text-center">
+      <hr />
+      High scores
+      <hr />
+      {% for score in scores %}
+      <p>{{ score.username }}</p>
+      <p>{{ score.score }}</p>
+      <hr />
+      {% endfor %}
+    </div>
   </div>
 </div>
 

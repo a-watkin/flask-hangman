@@ -9,15 +9,17 @@ hangman_blueprint = Blueprint('hangman', __name__)
 
 @hangman_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    high_scores = HighScores.query.order_by(HighScores.score).limit(10).all()
+    """
+    Loads the page and gets the high scores.
+    """
+    high_scores = HighScores.query.order_by(
+        HighScores.score.desc()).limit(10).all()
 
     if request.method == 'POST':
         username = request.form.get('username' or 'player-one')
         score = request.form.get('score')
         if score is None:
             score = 0
-
-        print('come on', username, score)
 
         player = HighScores(username=username, score=score)
         db.session.add(player)
@@ -30,12 +32,18 @@ def index():
 
 @hangman_blueprint.route('/guess-word', methods=['GET'])
 def get_guess_word():
+    """
+    Sends JSON data to start the game.
+    """
     h = Hangman()
     return json.dumps(h.get_class_as_dict())
 
 
 @hangman_blueprint.route('/check-guess', methods=['POST'])
 def check_guess():
+    """
+    Receives and checks JSON data.
+    """
     args = request.get_json()
     h = Hangman(args)
 
