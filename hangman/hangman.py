@@ -108,7 +108,7 @@ class Hangman(object):
                 if ''.join(self.hidden_word) == guess:
                     self.display_word = ''.join(self.hidden_word)
 
-            else:
+            if guess not in self.hidden_word:
                 self.guesses -= 1
 
             # Update game state.

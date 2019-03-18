@@ -11,9 +11,7 @@ jQuery(document).ready(function($) {
       console.log("out of guesses");
       $("#input-area").empty();
       $("#input-area").append(`<h1>Out of guesses, you lost.</h1>
-      <button id="reset-game" class="btn btn-primary">
-      Try again?
-      </button>
+      <button class="btn btn-primary" onClick="window.location.reload()">Try again?</button>
       `);
     }
   }
