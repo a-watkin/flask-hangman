@@ -12,22 +12,24 @@ def index():
     """
     Loads the page and gets the high scores.
     """
-    high_scores = HighScores.query.order_by(
-        HighScores.score.desc()).limit(10).all()
+    return render_template('hangman/index.html')
 
-    if request.method == 'POST':
-        username = request.form.get('username' or 'player-one')
-        score = request.form.get('score')
-        if score is None:
-            score = 0
+    # high_scores = HighScores.query.order_by(
+    #     HighScores.score.desc()).limit(10).all()
 
-        player = HighScores(username=username, score=score)
-        db.session.add(player)
-        db.session.commit()
+    # if request.method == 'POST':
+    #     username = request.form.get('username' or 'player-one')
+    #     score = request.form.get('score')
+    #     if score is None:
+    #         score = 0
 
-        return render_template('hangman/index.html', scores=high_scores)
+    #     player = HighScores(username=username, score=score)
+    #     db.session.add(player)
+    #     db.session.commit()
 
-    return render_template('hangman/index.html', scores=high_scores)
+    #     return render_template('hangman/index.html', scores=high_scores)
+
+    # return render_template('hangman/index.html', scores=high_scores)
 
 
 @hangman_blueprint.route('/guess-word', methods=['GET'])
