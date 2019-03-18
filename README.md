@@ -1,1 +1,3 @@
-# Starting point for flask projects
+# Flask hangman
+
+This is very rough.
