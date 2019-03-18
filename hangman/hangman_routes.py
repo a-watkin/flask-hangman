@@ -14,22 +14,22 @@ def index():
     """
     return render_template('hangman/index.html')
 
-    # high_scores = HighScores.query.order_by(
-    #     HighScores.score.desc()).limit(10).all()
+    high_scores = HighScores.query.order_by(
+        HighScores.score.desc()).limit(10).all()
 
-    # if request.method == 'POST':
-    #     username = request.form.get('username' or 'player-one')
-    #     score = request.form.get('score')
-    #     if score is None:
-    #         score = 0
+    if request.method == 'POST':
+        username = request.form.get('username' or 'player-one')
+        score = request.form.get('score')
+        if score is None:
+            score = 0
 
-    #     player = HighScores(username=username, score=score)
-    #     db.session.add(player)
-    #     db.session.commit()
+        player = HighScores(username=username, score=score)
+        db.session.add(player)
+        db.session.commit()
 
-    #     return render_template('hangman/index.html', scores=high_scores)
+        return render_template('hangman/index.html', scores=high_scores)
 
-    # return render_template('hangman/index.html', scores=high_scores)
+    return render_template('hangman/index.html', scores=high_scores)
 
 
 @hangman_blueprint.route('/guess-word', methods=['GET'])
