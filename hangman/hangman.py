@@ -82,7 +82,7 @@ class Hangman(object):
         Updates the game score.
         """
         # I am counting a correct guess of the word from start as a score of 100.
-        if self.guesses == 4 and self.game_won is True:
+        if self.guesses == 5 and self.game_won is True:
             self.score = 100
         elif self.guesses > 0:
             # Each guess out of 5 loses 20 points

@@ -1,34 +1,43 @@
 jQuery(document).ready(function($) {
   $.noConflict();
-
   // holds the JSON from the backend
   let currentState;
 
   function checkGameState() {
-    if (currentState["game_won"] === true) {
-      console.log("game over", currentState["score"]);
-      $("#input-area").empty();
-      $("#input-area").append(`<h1>Congrats you won.</h1>
-        <form method="POST">
+    // prevents multiple forms from being generated
+    let allowAppend = $("#game-over").find("h1").length === 0;
+    // check the game is over
+    if (currentState["game_won"] === true && allowAppend) {
+      $("#game-over").append(
+        `
+        <h1>Congrats you won!</h1>
+        <form class="game-over-form text-center" method="POST">
           <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input name="username" type="text" class="form-control" placeholder="Enter name">
+            <input
+              name="username"
+              type="text"
+              class="form-control text-center form-input"
+              placeholder="Enter name"
+            />
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Score</label>
-            <input name="score" class="form-control" value="${
-              currentState["score"]
-            }">
+            <input name="score" class="form-control text-center form-input" 
+            value="${currentState["score"]}" 
+            readonly="true">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-      `);
-    } else if (currentState["guesses"] <= 0) {
-      console.log("out of guesses");
-      $("#input-area").empty();
-      $("#input-area").append(`<h1>Out of guesses, you lost.</h1>
-      <button class="btn btn-primary" onClick="window.location.reload()">Try again?</button>
-      `);
+        `
+      );
+    } else if (currentState["guesses"] <= 0 && allowAppend) {
+      $("#game-over").append(
+        `
+        <h1>Out of guesses, you lost.</h1>
+        <button class="btn btn-primary" onClick="window.location.reload()">Try again?</button>
+        `
+      );
     }
   }
 
@@ -37,23 +46,44 @@ jQuery(document).ready(function($) {
     currentState = data;
     displayWord = data["display_word"];
 
+    // Clear the input area
+    $("#display-word").empty();
+    $("#input-area").empty();
+
     for (i = 0; i < displayWord.length; i++) {
       if (displayWord[i] !== "_") {
-        $("#input-area").append(`
-            <th>
-            <h1 class="display-word text-center">${displayWord[i]}</h1>
-            <input value="${
-              displayWord[i]
-            }" class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
-            </th>
-            `);
+        $("#display-word").append(
+          `
+            <td class="text-center">
+              <h1 class="display-word text-center">${displayWord[i]}</h1>
+            </td>
+          `
+        );
+
+        $("#input-area").append(
+          `
+            <td class="text-center">
+              <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text"
+              value="${displayWord[i]}"/>
+            </td>
+          `
+        );
       } else {
-        $("#input-area").append(`
-            <th>
-            <h1 class="display-word text-center">${displayWord[i]}</h1>
-            <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
-            </th>
-            `);
+        $("#display-word").append(
+          `
+            <td class="text-center">
+              <h1 class="display-word text-center">${displayWord[i]}</h1>
+            </td>
+          `
+        );
+
+        $("#input-area").append(
+          `
+            <td class="text-center">
+              <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
+            </td>
+          `
+        );
       }
     }
 

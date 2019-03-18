@@ -6,4 +6,4 @@ If you want to run it locally you will have to intilise the database which you s
 
 The http files are for testing the API.
 
-[A very ugly live version here](https://adevwatkin.com/hangman/)
+[Live version](https://adevwatkin.com/hangman/)

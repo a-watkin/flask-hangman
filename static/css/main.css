@@ -1,3 +1,191 @@
+body {
+  background: #292d2c;
+  color: #7a7a7a;
+  font-family: "Open Sans", sans-serif;
+}
+
+#text-input,
+#title-input,
+#content-input {
+  background: #081517;
+  color: #7a7a7a;
+}
+
+.blog-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin-top: 2em;
+  background: #081517;
+
+  margin-bottom: 1em;
+}
+
+.title {
+  font-family: "Raleway", sans-serif;
+
+  padding: 0.5em;
+}
+
+input,
+textarea {
+  margin-bottom: 2em;
+}
+
+textarea {
+  min-height: 20em;
+}
+
+.edit-link {
+  color: #7a7a7a;
+  padding-bottom: 1em;
+}
+
+.edit-link:hover {
+  color: green;
+}
+
+nav {
+  background: #081517;
+}
+
+/* nav a {
+  color: white;
+} */
+
+nav a:hover {
+  color: #7a7a7a;
+}
+
+pre code {
+  color: green;
+}
+
+/* add some space around buttons */
+.button-spacing {
+  margin: 0.7em;
+}
+
+#new-post-button {
+  margin-top: 0.7em;
+}
+
+.tag-spacing {
+  margin-bottom: 0.7em;
+  margin-right: 0.2em;
+}
+
+.post-edit-info {
+  margin-bottom: 0.5em;
+}
+
+/* navbar dropdown test */
+
+.dropdown-menu {
+  background-color: #081517;
+  color: white;
+}
+
+.nav-item.dropdown:focus {
+  color: white;
+  background-color: #081517;
+}
+
+.dropdown-item {
+  background-color: #081517;
+  color: white;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #7a7a7a;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* Projects */
+.project-title {
+  font-family: "Raleway", sans-serif;
+  /* padding: 1.2em; */
+  padding-top: 1%;
+  color: #7a7a7a;
+}
+
+.project-title a {
+  color: #7a7a7a;
+}
+
+.project-link {
+  margin-top: 1%;
+  color: #7a7a7a;
+}
+
+.project-link a {
+  color: #7a7a7a;
+}
+
+body {
+  /* background: #292d2c; */
+  color: #7a7a7a;
+  font-family: "Open Sans", sans-serif;
+}
+
+.tag-spacing {
+  margin-bottom: 0.7em;
+  margin-right: 0.2em;
+}
+
+/* prevent buttons from being at the very bottom of the viewport */
+.bottom-page {
+  margin-bottom: 4em;
+}
+
+.white-text {
+  color: white;
+}
+
+#social-media a {
+  color: #7a7a7a;
+}
+
+#social-media a:hover {
+  color: #007bff;
+}
+
+/* hangman */
 .table-input {
-  max-width: 4em;
+  max-width: 2em;
+}
+
+.game-over-form {
+  margin: auto;
+  max-width: 12em;
+}
+
+.form-input {
+  max-width: 12em;
+}
+
+#make-guess {
+  margin-bottom: 0.7em;
+}
+
+#high-scores {
+  margin: auto;
+  width: 100% !important;
+}
+
+/* remove top most table line */
+table {
+  border: #081517 solid 2px;
+}
+
+#score-title {
+  padding-left: 0.7em;
+}
+
+#score-area {
+  margin-bottom: 0.7em;
 }

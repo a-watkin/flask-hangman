@@ -2,42 +2,62 @@
 
 <!-- page content -->
 {% block content %}
-<div class="row">
-  <div class="col text-center">
-    <h1>Hangman</h1>
-  </div>
-</div>
-<hr />
-
-<div class="row">
-  <div class="col text-center">
-    <table class="table">
-      <thead>
-        <div id="input-area"></div>
-      </thead>
-    </table>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col text-center">
-    <button id="make-guess" class="btn btn-primary">
-      Make Guess
-    </button>
-  </div>
-</div>
-
-<div class="row">
+<div class="row blog-card">
   <div class="col">
-    <div class="col text-center">
-      <hr />
-      High scores
-      <hr />
-      {% for score in scores %}
-      <p>{{ score.username }}</p>
-      <p>{{ score.score }}</p>
-      <hr />
-      {% endfor %}
+    <div class="row">
+      <div class="col text-center">
+        <h1>Hangman</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <div id="game-over"></div>
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <tbody>
+            <tr id="display-word"></tr>
+            <tr id="input-area"></tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="col text-center">
+            <button id="make-guess" class="btn btn-primary">Make guess</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="score-area" class="col-sm-4 text-center">
+        <h3 id="score-title">High Scores</h3>
+
+        <div class="row">
+          <div class="col">
+            <table id="high-scores">
+              <tbody>
+                {% for score in scores %}
+                <tr>
+                  <td>Name:</td>
+                  <td>
+                    {{ score.username }}
+                  </td>
+                  <td>Score:</td>
+                  <td>
+                    {{ score.score }}
+                  </td>
+                  <td></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
