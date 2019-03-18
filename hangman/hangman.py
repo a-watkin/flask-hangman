@@ -3,7 +3,8 @@ import random
 
 class Hangman(object):
     def __init__(self, *args, **kwargs):
-        self.words = ['3dhubs']
+        self.words = ['3dhubs', 'marvin',
+                      'print', 'filament', 'order', 'layer']
 
         """
         If args are passed into the class as a dict then use those.
