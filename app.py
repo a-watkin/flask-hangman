@@ -25,7 +25,7 @@ def init_db():
     """
     Prevent auto linters from moving import to the top of the module.
     """
-    # import models here
+    from hangman.hangman_model import HighScores
 
 
 init_db()

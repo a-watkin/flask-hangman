@@ -6,7 +6,23 @@ jQuery(document).ready(function($) {
 
   function checkGameState() {
     if (currentState["game_won"] === true) {
-      console.log("game over");
+      console.log("game over", currentState["score"]);
+      $("#input-area").empty();
+      $("#input-area").append(`<h1>Congrats you won.</h1>
+        <form method="POST">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input name="username" type="text" class="form-control" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Score</label>
+            <input name="score" class="form-control" value="${
+              currentState["score"]
+            }">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      `);
     } else if (currentState["guesses"] <= 0) {
       console.log("out of guesses");
       $("#input-area").empty();

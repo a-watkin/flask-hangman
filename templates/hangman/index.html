@@ -25,6 +25,12 @@
 
   <div class="col">
     High scores
+    <hr />
+    {% for score in scores %}
+    <p>{{ score.username }}</p>
+    <p>{{ score.score }}</p>
+    <hr />
+    {% endfor %}
   </div>
 </div>
 
