@@ -30,6 +30,7 @@ class Hangman(object):
             self.hidden_word = self.get_random_word()
 
         if 'display_word' not in self.__dict__:
+            print('getting new display word?')
             self.display_word = self.get_display_word()
 
         self.game_won = False
@@ -104,7 +105,7 @@ class Hangman(object):
                     self.display_word[i] = guess
 
             # Situation where the guess is the lenght of the word.
-            if len(guess) == len(self.hidden_word):
+            elif len(guess) == len(self.hidden_word):
                 if ''.join(self.hidden_word) == guess:
                     self.display_word = ''.join(self.hidden_word)
 
@@ -115,33 +116,43 @@ class Hangman(object):
 if __name__ == "__main__":
     # testing passing in values
     h = Hangman({
-        'guesses': 5
+        'guesses': 5,
+        'display_word': [
+            "3",
+            "d",
+            "_",
+            "_",
+            "_",
+            "_"
+        ]
     })
+
+    print(h)
 
     # pretend game
     # move 1
-    print('1', h.check_current_guess('x'))
-    print(h.display_word)
+    # print('1', h.check_current_guess('x'))
+    # print(h.display_word)
 
-    # move 2
-    print('2', h.check_current_guess('h'))
-    print(h.display_word)
+    # # move 2
+    # print('2', h.check_current_guess('h'))
+    # print(h.display_word)
 
-    # move 3
-    print('3', h.check_current_guess('s'))
-    print(h.display_word)
+    # # move 3
+    # print('3', h.check_current_guess('s'))
+    # print(h.display_word)
 
-    # move 4
-    print('4', h.check_current_guess('3'))
-    print(h.display_word)
+    # # move 4
+    # print('4', h.check_current_guess('3d'))
+    # print(h.display_word)
 
-    # move 5 game over
-    print('5', h.check_current_guess('b'))
-    print(h.display_word)
+    # # move 5 game over
+    # print('5', h.check_current_guess('b'))
+    # print(h.display_word)
 
-    print(h.check_current_guess('a'))
-    print(h.display_word)
+    # print(h.check_current_guess('a'))
+    # print(h.display_word)
 
-    print(h.guesses)
+    # print(h.guesses)
 
-    print(h)
+    # print(h)

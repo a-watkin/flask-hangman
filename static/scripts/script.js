@@ -4,44 +4,43 @@ jQuery(document).ready(function($) {
   // holds the JSON from the backend
   let currentState;
 
-  function getDisplayWord() {
-    fetch("/hangman/guess-word", {})
-      .then(res => res.json())
-      .then(result => {
-        displayWord = result["display_word"];
-        console.log(result);
-        currentState = result;
-        console.log(currentState);
-        // $("#disaply-word").append(result["display_word"].join(" "));
-
-        for (i = 0; i < displayWord.length; i++) {
-          console.log("what");
-          $("#input-area").append(`
-          <th>
-          <h1 class="text-center">${displayWord[i]}</h1>
-          <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
-          </th>
-          `);
-        }
-      });
-  }
-
   function updateInputArea(data) {
     $("#input-area").empty();
     displayWord = data["display_word"];
 
     for (i = 0; i < displayWord.length; i++) {
-      console.log("what");
-      $("#input-area").append(`
-          <th>
-          <h1 class="text-center">${displayWord[i]}</h1>
-          <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
-          </th>
-          `);
+      if (displayWord[i] !== "_") {
+        $("#input-area").append(`
+            <th>
+            <h1 class="display-word text-center">${displayWord[i]}</h1>
+            <input value="${
+              displayWord[i]
+            }" class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
+            </th>
+            `);
+      } else {
+        $("#input-area").append(`
+            <th>
+            <h1 class="display-word text-center">${displayWord[i]}</h1>
+            <input class="table-input text-center" id="text-input-${i}" maxlength="1" type="text" />
+            </th>
+            `);
+      }
     }
+
+    currentState = data;
+  }
+
+  function getDisplayWord() {
+    fetch("/hangman/guess-word", {})
+      .then(res => res.json())
+      .then(result => {
+        updateInputArea(result);
+      });
   }
 
   function sendData(data) {
+    console.log("sending data ", data);
     fetch("/hangman/check-guess", {
       method: "POST",
       credentials: "include",
@@ -55,7 +54,7 @@ jQuery(document).ready(function($) {
       .then(res => res.json())
       .then(result => {
         updateInputArea(result);
-        console.log("please?", result);
+        console.log("data from server ", result);
       });
   }
 
@@ -68,9 +67,10 @@ jQuery(document).ready(function($) {
 
     // update the object with the guess
     currentState["current_guess"] = guessAttempt;
+    // currentState["display_word"] = getDisplayValue();
+
     // send the data
     sendData(currentState);
-
     event.preventDefault();
   }
 
