@@ -94,7 +94,6 @@ class Hangman(object):
         Checks a single character guess or an entire word guess.
         """
         if self.game_won is False and self.guesses >= 0:
-            self.guesses -= 1
             # Situation where guess is one char long.
             if len(guess) == 1:
                 # Get the index value of chars that match the guess.
@@ -108,6 +107,9 @@ class Hangman(object):
             elif len(guess) == len(self.hidden_word):
                 if ''.join(self.hidden_word) == guess:
                     self.display_word = ''.join(self.hidden_word)
+
+            else:
+                self.guesses -= 1
 
             # Update game state.
             self.check_state()

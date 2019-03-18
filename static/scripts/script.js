@@ -4,8 +4,23 @@ jQuery(document).ready(function($) {
   // holds the JSON from the backend
   let currentState;
 
+  function checkGameState() {
+    if (currentState["game_won"] === true) {
+      console.log("game over");
+    } else if (currentState["guesses"] <= 0) {
+      console.log("out of guesses");
+      $("#input-area").empty();
+      $("#input-area").append(`<h1>Out of guesses, you lost.</h1>
+      <button id="reset-game" class="btn btn-primary">
+      Try again?
+      </button>
+      `);
+    }
+  }
+
   function updateInputArea(data) {
     $("#input-area").empty();
+    currentState = data;
     displayWord = data["display_word"];
 
     for (i = 0; i < displayWord.length; i++) {
@@ -28,7 +43,7 @@ jQuery(document).ready(function($) {
       }
     }
 
-    currentState = data;
+    checkGameState();
   }
 
   function getDisplayWord() {
@@ -54,6 +69,8 @@ jQuery(document).ready(function($) {
       .then(res => res.json())
       .then(result => {
         updateInputArea(result);
+        currentState = result;
+        checkGameState;
         console.log("data from server ", result);
       });
   }
