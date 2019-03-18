@@ -23,9 +23,9 @@ def check_guess():
     h = Hangman(args)
 
     # if guess in
-    if 'current_guess' in args:
-        guess = ''.join(args['current_guess'])
+    if "current_guess" in args:
+        guess = ''.join(args["current_guess"])
         h.check_current_guess(guess)
-        print('yes')
 
+    print(json.dumps(h.get_class_as_dict()))
     return json.dumps(h.get_class_as_dict())
