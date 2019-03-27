@@ -12,6 +12,7 @@ def index():
     """
     Loads the page and gets the high scores.
     """
+
     high_scores = HighScores.query.order_by(
         HighScores.score.desc()).limit(10).all()
 

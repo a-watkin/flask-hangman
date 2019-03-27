@@ -17,18 +17,17 @@ class Hangman(object):
             setattr(self, key, kwargs[key])
 
         # Some default vales to apply if not present.
-        if 'guesses' not in self.__dict__:
+        if not hasattr(self, 'guesses'):
             self.guesses = 5
 
-        if 'hidden_word' not in self.__dict__:
-            self.hidden_word = self.get_random_word()
-
-        if 'display_word' not in self.__dict__:
-            print('getting new display word?')
+        if not hasattr(self, 'display_word'):
             self.display_word = self.get_display_word()
 
+        if not hasattr(self, 'hidden_word'):
+            self.hidden_word = self.get_random_word()
+
         self.game_won = False
-        # Number of guesses determines the score out of 100
+        # Number of guesses determines the score out of 100.
         self.score = (self.guesses * 2) * 10
 
     def __str__(self):
@@ -87,6 +86,8 @@ class Hangman(object):
         """
         Checks a single character guess or an entire word guess.
         """
+        # Make sure the guess is lower case.
+        guess = guess.lower()
         if self.game_won is False and self.guesses >= 0:
             # Situation where guess is one char long.
             if len(guess) == 1:
