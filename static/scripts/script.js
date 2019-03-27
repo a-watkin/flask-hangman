@@ -113,10 +113,10 @@ jQuery(document).ready(function($) {
       .then(result => {
         updateInputArea(result);
         currentState = result;
-        checkGameState;
       });
   }
 
+  // Gets all the input values.
   function onClick(event) {
     var guessAttempt = $(".table-input")
       .map(function(idx, elem) {
@@ -124,7 +124,7 @@ jQuery(document).ready(function($) {
       })
       .get();
 
-    // Update the object with the guess.
+    // Update the guess with the users values.
     currentState["current_guess"] = guessAttempt;
 
     // Send the data.
