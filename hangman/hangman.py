@@ -6,24 +6,17 @@ class Hangman(object):
         self.words = ['3dhubs', 'marvin',
                       'print', 'filament', 'order', 'layer']
 
-        """
-        If args are passed into the class as a dict then use those.
-
-        This is to facilitate creating a new instance using values from the frontend.
-        """
+        # If args are passed into the class as a dict then use those.
+        # This is to facilitate creating a new instance using values from the frontend.
         for dictionary in args:
             for key in dictionary:
                 setattr(self, key, dictionary[key])
 
-        """
-        If there are keyword arguments then use those.
-        """
+        # If there are keyword arguments then use those.
         for key in kwargs:
             setattr(self, key, kwargs[key])
 
-        """
-        Some default vales to apply if not present.
-        """
+        # Some default vales to apply if not present.
         if 'guesses' not in self.__dict__:
             self.guesses = 5
 
