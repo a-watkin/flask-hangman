@@ -97,7 +97,7 @@ class Hangman(object):
                 for i in index_values:
                     self.display_word[i] = guess
 
-            # Situation where the guess is the lenght of the word.
+            # Situation where the guess is the length of the word.
             elif len(guess) == len(self.hidden_word):
                 if ''.join(self.hidden_word) == guess:
                     self.display_word = ''.join(self.hidden_word)
@@ -110,7 +110,7 @@ class Hangman(object):
 
 
 if __name__ == "__main__":
-    # testing passing in values
+    # Testing passing in values.
     h = Hangman({
         'guesses': 5,
         'display_word': [
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
     print(h)
 
-    # pretend game
+    # Pretend game:
     # move 1
     # print('1', h.check_current_guess('x'))
     # print(h.display_word)

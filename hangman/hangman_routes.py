@@ -18,7 +18,7 @@ def index():
     if request.method == 'POST':
         username = request.form.get('username' or 'player-one')
         score = request.form.get('score')
-        print('username', username, 'score', score)
+
         if score is None:
             score = 0
 
@@ -28,8 +28,6 @@ def index():
 
         high_scores = HighScores.query.order_by(
             HighScores.score.desc()).limit(10).all()
-
-        return render_template('hangman/index.html', scores=high_scores)
 
     return render_template('hangman/index.html', scores=high_scores)
 
