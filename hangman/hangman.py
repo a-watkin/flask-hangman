@@ -20,11 +20,11 @@ class Hangman(object):
         if not hasattr(self, 'guesses'):
             self.guesses = 5
 
-        if not hasattr(self, 'display_word'):
-            self.display_word = self.get_display_word()
-
         if not hasattr(self, 'hidden_word'):
             self.hidden_word = self.get_random_word()
+
+        if not hasattr(self, 'display_word'):
+            self.display_word = self.get_display_word()
 
         self.game_won = False
         # Number of guesses determines the score out of 100.

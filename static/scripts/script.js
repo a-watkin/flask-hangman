@@ -1,12 +1,12 @@
 jQuery(document).ready(function($) {
   $.noConflict();
-  // holds the JSON from the backend
+  // Holds game state as JSON from the server.
   let currentState;
 
   function checkGameState() {
-    // prevents multiple forms from being generated
+    // Prevents multiple forms from being generated.
     let allowAppend = $("#game-over").find("h1").length === 0;
-    // check the game is over
+
     if (currentState["game_won"] === true && allowAppend) {
       $("#game-over").append(
         `
@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
     currentState = data;
     displayWord = data["display_word"];
 
-    // Clear the input area
+    // Clear the input area.
     $("#display-word").empty();
     $("#input-area").empty();
 
@@ -99,7 +99,6 @@ jQuery(document).ready(function($) {
   }
 
   function sendData(data) {
-    console.log("sending data ", data);
     fetch("/hangman/check-guess", {
       method: "POST",
       credentials: "include",
@@ -115,7 +114,6 @@ jQuery(document).ready(function($) {
         updateInputArea(result);
         currentState = result;
         checkGameState;
-        console.log("data from server ", result);
       });
   }
 
@@ -126,11 +124,10 @@ jQuery(document).ready(function($) {
       })
       .get();
 
-    // update the object with the guess
+    // Update the object with the guess.
     currentState["current_guess"] = guessAttempt;
-    // currentState["display_word"] = getDisplayValue();
 
-    // send the data
+    // Send the data.
     sendData(currentState);
     event.preventDefault();
   }
