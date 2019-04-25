@@ -6,4 +6,4 @@ If you want to run it locally you will have to intilise the database which you s
 
 The http files are for testing the API.
 
-[Live version](https://github.com/a-watkin/flask-hangman.git)
+[Live version](https://adevwatkin.com/games/hangman)
